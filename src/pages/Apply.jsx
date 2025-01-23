@@ -8,6 +8,7 @@ function Apply() {
   const [category, setCategory] = useState("");
   const [scoreCard, setScoreCard] = useState(null);
   const [documents, setDocuments] = useState(null);
+  const [marks, setMarks] = useState(""); // State for marks
 
   // Handlers for Work Experience
   const handleAddExperience = () => {
@@ -42,6 +43,7 @@ function Apply() {
     formData.append("category", category);
     formData.append("scoreCard", scoreCard);
     formData.append("documents", documents);
+    formData.append("marks", marks); // Include marks in submission
 
     workExperience.forEach((exp, index) =>
       formData.append(`workExperience[${index}]`, JSON.stringify(exp))
@@ -141,11 +143,8 @@ function Apply() {
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
-      
-  
 
-
-        {/* Work Experience */}
+                {/* Work Experience */}
 <div>
   <h2 className="text-lg font-semibold mt-4">Work Experience</h2>
   {workExperience.map((exp, index) => (
@@ -260,6 +259,19 @@ function Apply() {
   </button>
 </div>
 
+        {/* Marks */}
+        <div className="mb-4">
+          <label htmlFor="marks" className="block text-sm font-medium text-gray-700">
+            SSB exam marks
+          </label>
+          <input
+            type="number"
+            id="marks"
+            value={marks}
+            onChange={(e) => setMarks(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md"
+          />
+        </div>
 
         {/* Submit Button */}
         <button
